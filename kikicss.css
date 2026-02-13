@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Italiana&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 :root {
-  --primary-font: monospace;
+  --primary-font: "Philosopher", sans-serif;
   --heading-font: Archivo Black;
   --white: #ffffff;
   --accent-green: #9ac753;
@@ -12,8 +14,34 @@
   margin: 0;
 }
 
+.italiana-regular {
+  font-family: "Italiana", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.philosopher-regular {
+  font-family: "Philosopher", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.philosopher-bold {
+  font-family: "Philosopher", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.philosopher-regular-italic {
+  font-family: "Philosopher", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+.philosopher-bold-italic {
+  font-family: "Philosopher", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
 body {
-  display: grid;
+  background: #14151b;
   background-attachment: fixed;
   background-image:
     linear-gradient(
@@ -22,30 +50,53 @@ body {
       rgba(255, 255, 255, 0) 70%,
       rgb(0, 0, 0) 100%
     ),
-    url("../assets/img/bg.jpeg");
-  /* background: ; */
+    url("https://i.pinimg.com/originals/d5/84/0b/d5840b194bc468e606984aa99f6558c8.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   font-size: 16px;
   color: var(--white);
   font-family: var(--primary-font);
-  grid-template-columns: 1fr 10fr 1fr;
-  grid-template-areas: "leftspace container rightspace";
 }
 
-.leftspace {
-  grid-area: leftspace;
+.cursorcircle {
+  width: 80px;
+  height: 80px;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.3s ease-out;
 }
 
-.rightspace {
-  grid-area: rightspace;
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px; /* Thickness of the bar */
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 9999;
+}
+
+#loading-bar {
+  width: 0%;
+  height: 100%;
+  background: #8fcc3f; /* Your brand color */
+  box-shadow: 0 0 10px #8fcc3f;
 }
 
 .container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
   grid-area: container;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas:
-    "nav nav"
-    "content rightbar";
+  grid-template-columns: 5fr 2fr;
+  grid-template-areas: "content rightbar";
+  padding-bottom: 10px;
 }
 
 .content {
@@ -58,11 +109,15 @@ body {
 }
 
 h1 {
-  font-family: var(--heading-font);
+  font-family: "Italiana", sans-serif;
   font-size: 60px;
   font-weight: 1000;
   color: #8fcc3f;
   box-shadow: 10px 10px 10px #0000;
+}
+
+h2 {
+  padding: 10px 0px;
 }
 
 img {
@@ -77,14 +132,20 @@ a {
   font-size: 18px;
   color: var(--accent-green);
   font-weight: bold;
+  text-decoration: none;
 }
 
 a:hover {
+  text-decoration: underline;
   color: var(--accent-highlight-green);
 }
 
 a.active {
   color: var(--active-accent-green);
+}
+
+a.disabled {
+  color: #645b5b;
 }
 
 button {
@@ -189,12 +250,8 @@ option:hover {
   transition: 0.6s;
 }
 
-.profilebox:hover {
-  background-position: bottom;
-}
-
 .profilebox img {
-  border: 10px dashed #111111;
+  border: 10px dashed #8fcc3f8e;
 }
 
 .cards {
@@ -209,7 +266,7 @@ option:hover {
   flex-direction: column;
   background: #030e06;
   padding: 10px;
-  width: 200px;
+  width: auto;
   transition: 0.2s;
   z-index: 1;
 }
@@ -228,10 +285,14 @@ option:hover {
   display: block;
 }
 
+.card h2 {
+  padding-top: 8px;
+}
+
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 500px;
   height: 400px;
   margin: auto;
   overflow: hidden;
@@ -254,6 +315,8 @@ option:hover {
   font-size: 2rem;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Italiana", sans-serif;
+  font-weight: 800;
 }
 
 .ctrlbtn {
@@ -262,15 +325,16 @@ option:hover {
   transform: translateY(-50%);
   background: var(--glass);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid #ffffff96;
   color: white;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.2rem;
   transition: all 0.3s ease;
   z-index: 10;
+  box-shadow: none;
 }
 
 .ctrlbtn:hover {
@@ -284,4 +348,20 @@ option:hover {
 
 .ctrlbtn.next {
   right: 20px;
+}
+
+.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 650px) {
+  .container {
+    display: block;
+  }
+  .cursorcircle {
+    display: none;
+  }
+  /* .mobile {
+    display: block;
+  } */
 }
